@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     'name' : 'Task_Manager',
     'version' : '1.2',
     'sequence': 10,
+    'summary': 'Simple Task Management Module',
+    'description': """
+Task Manager for Odoo 17
+=======================
+This module allows users to track and manage their daily tasks.
+    """,
     'depends': ['web'],
     'data': [
         'security/ir.model.access.csv',

@@ -1,13 +1,16 @@
 <odoo>
 
-    <!-- Tree View -->
+    <!-- List (Tree) View -->
     <record id="view_task_tree" model="ir.ui.view">
         <field name="name">task.manager.tree</field>
         <field name="model">task.manager</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Tasks">
                 <field name="name"/>
-                <field name="is_done"/>
+                <field name="status" widget="badge" 
+                       decoration-success="status == 'done'" 
+                       decoration-info="status == 'in_progress'" 
+                       decoration-muted="status == 'pending'"/>
             </tree>
         </field>
     </record>
@@ -18,11 +21,18 @@
         <field name="model">task.manager</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_mark_done"
+                            type="object"
+                            string="Mark Done"
+                            class="oe_highlight"
+                            invisible="status == 'done'"/>
+                    <field name="status" widget="statusbar"/>
+                </header>
                 <sheet>
                     <group>
                         <field name="name"/>
-                        <field name="description"/>
-                        <field name="is_done"/>
+                        <field name="description" readonly="status == 'done'"/>
                     </group>
                 </sheet>
             </form>

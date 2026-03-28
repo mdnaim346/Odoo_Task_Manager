@@ -6,4 +6,12 @@ class Task(models.Model):
 
     name= fields.Char(string="Task Name",required = True)
     description=fields.Text(string="Description")
-    is_done= fields.Boolean(string="Is Done",default=False)
+    status = fields.Selection([
+        ('pending', 'Pending'),
+        ('done', 'Done')
+    ], string="Status", default='pending')
+
+
+    def action_mark_done(self):
+     for task in self:
+        task.status = 'done'
